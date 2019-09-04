@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
+  root 'posts#index'
   get 'posts/new'
   get 'posts/create'
   get '/posts', to: 'posts#index'
-  root 'sessions#new'
   get '/login', to: 'sessions#new'
   post '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'

@@ -1,8 +1,25 @@
-<% for i in @post do%>
-  <span><%= i.title %> title</span>
-  <br>
-  <span><%= i.body %></span>
-  <% if @user%>
-    <span><%= i.user.name%></span>
-  <% end %>
+<h1 class="m-5">Recent Posts</h1>
+
+<% if !@posts.empty? %>
+<div class="container d-flex">
+<% for i in @posts do%>
+  <%= render 'post_card', {post: i}%>
+<% end %>
+</div>
+<% else %>
+ <h4 class="alert-primary text-center p-4">Currently no post </h4>
+<% end %>
+
+<hr>
+<% if !@user.nil? %>
+<footer class="d-flex justify-content-center">
+<%= link_to "Create new post",'#', class: "btn btn-primary m-2"%>
+<%= link_to @user.name, user_path(@user.id), class: "btn btn-primary m-2"%>
+<%= link_to "Logout", logout_path, method: :delete, class: "btn btn-danger m-2"%>
+</footer>
+<% else %>
+<footer class="d-flex justify-content-center">
+<%= link_to "Create new account", signup_path,  class: "btn btn-primary m-2"%>
+<%= link_to "Login", login_path, class: "btn btn-primary m-2"%>
+</footer>
 <% end %>
