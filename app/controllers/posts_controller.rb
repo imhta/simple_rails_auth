@@ -2,14 +2,13 @@ class PostsController < ApplicationController
   before_action :logged_in_user, only: [:new, :create] 
 
   def new
-    @post = Post.new
+    @post=current_user.posts.new
   end
 
   def create
-    @user=User.find(params[:id])
-    @post=current_user.posts.build(posts_params)
+    @post=current_user.posts.new(posts_params)
     if @post.save
-      redirect_to 'index'
+      redirect_to root_path
     else
       puts "Something wrong"
     end
@@ -17,7 +16,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
-    @user=current_user
+    @user = current_user
   end
   def show
   end
@@ -29,6 +28,6 @@ class PostsController < ApplicationController
       end
     end
     def posts_params
-      params.require(:post).permit(:content)
+      params.require(:post).permit(:title, :body, :user_id)
     end
 end

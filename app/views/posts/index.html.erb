@@ -1,9 +1,9 @@
 <h1 class="m-5">Recent Posts</h1>
 
-<% if !@posts.empty? %>
-<div class="container d-flex">
-<% for i in @posts do%>
-  <%= render 'post_card', {post: i}%>
+<% if !@posts.nil? %>
+<div class="container d-flex flex-wrap">
+<% for post in @posts do%>
+  <%= render 'post_card', {post: post}%>
 <% end %>
 </div>
 <% else %>
@@ -13,7 +13,7 @@
 <hr>
 <% if !@user.nil? %>
 <footer class="d-flex justify-content-center">
-<%= link_to "Create new post",'#', class: "btn btn-primary m-2"%>
+<%= link_to "Create new post", newpost_path, class: "btn btn-primary m-2"%>
 <%= link_to @user.name, user_path(@user.id), class: "btn btn-primary m-2"%>
 <%= link_to "Logout", logout_path, method: :delete, class: "btn btn-danger m-2"%>
 </footer>
