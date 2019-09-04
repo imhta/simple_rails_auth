@@ -2,12 +2,7 @@
 
 <% if !@post.empty? %>
 <% for i in @post do%>
-  <span><%= i.title %> title</span>
-  <br>
-  <span><%= i.body %></span>
-  <% if @user%>
-    <span><%= i.user.name%></span>
-  <% end %>
+  <%= render 'post_card', {post: i}%>
 <% end %>
 <% else %>
  <h4 class="alert-primary text-center p-4">Currently no post </h4>
