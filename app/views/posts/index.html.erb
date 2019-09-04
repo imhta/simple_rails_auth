@@ -1,2 +1,8 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<% for i in @post do%>
+  <span><%= i.title %> title</span>
+  <br>
+  <span><%= i.body %></span>
+  <% if @user%>
+    <span><%= i.user.name%></span>
+  <% end %>
+<% end %>
