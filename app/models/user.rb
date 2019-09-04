@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  before_create create_remember_token
+  before_create :create_remember_token
   before_save {self.email = email.downcase}
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX =/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -9,15 +9,15 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: {minimum: 6}
 
-  
+ 
+  def create_remember_token
+    self.remember_token = encrypt_to_hexdigest User.generate_new_token.to_s
+  end 
 
   def self.generate_new_token 
     SecureRandom.urlsafe_base64
   end
 
-  def self.create_remember_token
-    self.remember_token = encrypt_to_hexdigest User.generate_new_token.to_s
-  end
 
   private 
     def encrypt_to_hexdigest token
