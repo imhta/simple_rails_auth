@@ -12,3 +12,16 @@
 <% else %>
  <h4 class="alert-primary text-center p-4">Currently no post </h4>
 <% end %>
+
+
+<% if !@user.nil? %>
+<footer class="d-flex justify-content-center">
+<%= link_to @user.name, user_path(@user.id), class: "btn btn-success m-2"%>
+<%= link_to "Logout", logout_path, method: :delete, class: "btn btn-danger m-2"%>
+</footer>
+<% else %>
+<footer class="d-flex justify-content-center">
+<%= link_to "Create new account", signup_path,  class: "btn btn-primary m-2"%>
+<%= link_to "Login", login_path, class: "btn btn-primary m-2"%>
+</footer>
+<% end %>
