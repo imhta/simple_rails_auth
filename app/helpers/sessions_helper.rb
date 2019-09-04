@@ -23,5 +23,14 @@ module SessionsHelper
         end
     end
   end
-  
+  def forgot user
+    cookies.delete(:user_id)
+    cookies.delete(:remember_token)
+  end
+  def sign_out 
+    forgot current_user
+    session.delete :user_id
+    @current_user = nil
+  end
+
 end
