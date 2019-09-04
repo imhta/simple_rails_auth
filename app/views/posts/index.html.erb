@@ -1,7 +1,7 @@
 <h1 class="m-5">Recent Posts</h1>
 
-<% if !@post.empty? %>
-<% for i in @post do%>
+<% if !@posts.empty? %>
+<% for i in @posts do%>
   <%= render 'post_card', {post: i}%>
 <% end %>
 <% else %>
