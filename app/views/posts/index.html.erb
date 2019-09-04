@@ -1,3 +1,6 @@
+<h1 class="m-5">Recent Posts</h1>
+
+<% if !@post.empty? %>
 <% for i in @post do%>
   <span><%= i.title %> title</span>
   <br>
@@ -5,4 +8,7 @@
   <% if @user%>
     <span><%= i.user.name%></span>
   <% end %>
+<% end %>
+<% else %>
+ <h4 class="alert-primary text-center p-4">Currently no post </h4>
 <% end %>
