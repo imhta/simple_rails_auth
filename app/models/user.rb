@@ -8,9 +8,9 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: {minimum: 6}
 
-  private
+  
 
-  generate_new_token 
+  def self.generate_new_token 
     SecureRandom.urlsafe_base64
   end
   
