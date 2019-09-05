@@ -23,6 +23,11 @@ class UsersController < ApplicationController
   
   def update
   end
+
+  def destroy
+    user=User.find(params[:id]).destroy
+    redirect_to root_url
+  end
   
   private 
   def user_params
