@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   def update; end
 
   def destroy
-    user = User.find(params[:id]).destroy
+    User.find(params[:id]).destroy
     redirect_to root_url
   end
 
