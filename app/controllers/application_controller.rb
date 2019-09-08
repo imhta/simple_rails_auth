@@ -1,6 +1,7 @@
-class ApplicationController < ActionController::Base
-    include SessionsHelper
+# frozen_string_literal: true
 
-    def index 
-    end
+class ApplicationController < ActionController::Base
+  include SessionsHelper
+
+  def index; end
 end
