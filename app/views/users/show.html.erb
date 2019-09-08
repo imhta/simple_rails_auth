@@ -2,7 +2,7 @@
 <h1>Profile</h1>
 <div>
 <%= link_to "Home", root_path, class: "btn btn-primary m-2"%>
-<% if @loggedin %>
+<% if logged_in? %>
     <%= link_to "Logout", logout_path, method: :delete, class: "btn btn-danger m-2"%>
 <% end %>
 </div>
