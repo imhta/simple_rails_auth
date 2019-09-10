@@ -1,6 +1,15 @@
 # frozen_string_literal: true
 
 module SessionsHelper
+  def log_in(user)
+    user.remember
+    session[:user_id] = user.id
+  end
+
+  def save_cookies(user)
+    cookies.permanent.signed[:user_id] = user.id
+    cookies.permanent[:remember_token] = user.remember_token
+  end
 
   def current_user
     if (user_id = session[:user_id])
@@ -18,7 +27,17 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  def forgot(user)
+    user.forget
+    cookies.delete(:user_id)
+    cookies.delete(:remember_token)
+  end
 
+  def sign_out
+    forgot current_user
+    session.delete :user_id
+    @current_user = nil
+  end
 
   def store_location
     session[:forwarding_url] = request.original_url if request.get?
