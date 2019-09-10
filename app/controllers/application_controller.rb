@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
     save_cookies(user)
     session[:user_id] = user.id
   end
+
   def forgot(user)
     user.forget
     cookies.delete(:user_id)
@@ -23,6 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
   def save_cookies(user)
     cookies.permanent.signed[:user_id] = user.id
     cookies.permanent[:remember_token] = user.remember_token

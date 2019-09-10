@@ -17,7 +17,6 @@ class User < ApplicationRecord
     self.remember_token = encrypt_to_hexdigest(SecureRandom.urlsafe_base64)
   end
 
-
   def remember
     update_attribute(:remember_token, create_remember_token)
   end
