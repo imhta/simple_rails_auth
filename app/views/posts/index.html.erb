@@ -1,0 +1,27 @@
+<header class="d-flex justify-content-between align-content-center m-5">
+<h1>Recent Posts</h1>
+<% if logged_in? %>
+<div>
+<%= link_to "Create new post", newpost_path, class: "btn btn-primary m-2"%>
+<%= link_to @user.name, user_path(@user.id), class: "btn btn-primary m-2"%>
+<%= link_to "Logout", logout_path, method: :delete, class: "btn btn-danger m-2"%>
+</div>
+<% else %>
+<div>
+<%= link_to "Create new account", signup_path,  class: "btn btn-primary m-2"%>
+<%= link_to "Login", login_path, class: "btn btn-primary m-2"%>
+</div>
+<% end %>
+</header>
+
+<hr>
+
+<% if !@posts.nil? %>
+<div class="container d-flex flex-wrap">
+<% for post in @posts do%>
+  <%= render 'post_card', {post: post}%>
+<% end %>
+</div>
+<% else %>
+ <h4 class="alert-primary text-center p-4">Currently no post </h4>
+<% end %>

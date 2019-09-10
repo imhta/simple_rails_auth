@@ -1,0 +1,15 @@
+<header class="d-flex justify-content-between m-5">
+<h1>Profile</h1>
+<div>
+<%= link_to "Home", root_path, class: "btn btn-primary m-2"%>
+<% if logged_in? %>
+    <%= link_to "Logout", logout_path, method: :delete, class: "btn btn-danger m-2"%>
+<% end %>
+</div>
+</header>
+<hr>
+<div  class="m-4 p-3">
+<h1>This is <%= @user.name %></h1>
+<h4 class="text-secondary">My Email address is <%= @user.email %></h4>
+</div>
+
